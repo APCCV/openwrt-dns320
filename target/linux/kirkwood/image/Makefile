@@ -180,6 +180,14 @@ define Device/ctera_c200-v1
 endef
 TARGET_DEVICES += ctera_c200-v1
 
+define Device/dlink_dns320
+  DEVICE_VENDOR := D-Link
+  DEVICE_MODEL := DNS-320
+  DEVICE_PACKAGES := kmod-ata-marvell-sata kmod-fs-ext4 kmod-gpio-button-hotplug \
+	kmod-usb-storage kmod-usb-ledtrig-usbport kmod-rtc-mv
+endef
+TARGET_DEVICES += dlink_dns320
+
 define Device/dlink_dns320l
   DEVICE_VENDOR := D-Link
   DEVICE_MODEL := DNS-320L
