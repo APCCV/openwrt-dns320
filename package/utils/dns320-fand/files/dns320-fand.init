@@ -1,0 +1,35 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006 OpenWrt.org
+START=91
+
+USE_PROCD=1
+PROG=/usr/sbin/dns320-fand
+
+start_service() {
+	config_load dns320-fand
+
+	config_get frequency fancontrol frequency
+	[ -z "$frequency" ] || frequency="-f $frequency"
+	config_get cpu_high fancontrol cpu_high
+	[ -z "$cpu_high" ] || cpu_high="-h $cpu_high"
+	config_get cpu_low fancontrol cpu_low
+	[ -z "$cpu_low" ] || cpu_low="-l $cpu_low"
+	config_get disk_high fancontrol disk_high
+	[ -z "$disk_high" ] || disk_high="-d $disk_high"
+	config_get disk_low fancontrol disk_low
+	[ -z "$disk_low" ] || disk_low="-e $disk_low"
+	config_get hysteresis fancontrol hysteresis
+	[ -z "$hysteresis" ] || hysteresis="-s $hysteresis"
+	config_get ignore fancontrol ignore
+	[ -z "$ignore" ] || ignore="-i $ignore"
+
+	procd_open_instance
+	procd_set_param command "$PROG" "$frequency" "$cpu_high" "$cpu_low" "$disk_high" "$disk_low" "$hysteresis" "$ignore"
+	#procd_set_param file "$config_file"
+	procd_set_param respawn
+	procd_close_instance
+}
+
+reload_service() {
+	procd_send_signal "$PROG"
+}
