@@ -20,6 +20,11 @@ define U-Boot/Default
   BUILD_SUBTARGET:=generic
 endef
 
+define U-Boot/dns320
+  NAME:=D-Link DNS-320
+  BUILD_DEVICES:=dlink_dns320
+endef
+
 define U-Boot/dns320l
   NAME:=D-Link DNS-320L
   BUILD_DEVICES:=dlink_dns320l
@@ -116,6 +121,7 @@ define U-Boot/sheevaplug
 endef
 
 UBOOT_TARGETS := \
+	dns320 \
 	dns320l \
 	dns325 \
 	dockstar dockstar_second_stage \

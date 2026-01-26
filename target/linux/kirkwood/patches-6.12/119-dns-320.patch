@@ -1,0 +1,32 @@
+--- a/arch/arm/boot/dts/marvell/kirkwood-dns320.dts
++++ b/arch/arm/boot/dts/marvell/kirkwood-dns320.dts
+@@ -57,3 +57,29 @@
+ 		};
+ 	};
+ };
++
++&nand {
++	status = "okay";
++	chip-delay = <35>;
++
++	partition@0 {
++		label = "u-boot";
++		reg = <0x0000000 0x0e0000>;
++		read-only;
++	};
++
++	partition@0e0000 {
++		label = "env";
++		reg = <0x00e0000 0x020000>;
++	};
++
++	partition@100000 {
++		label = "ubi";
++		reg = <0x0100000 0x7f00000>;
++	};
++
++       /delete-node/ partition@600000;  /* ramdisk */
++       /delete-node/ partition@b00000;  /* image */
++       /delete-node/ partition@7100000; /* mini firmware */
++       /delete-node/ partition@7b00000; /* config */
++};

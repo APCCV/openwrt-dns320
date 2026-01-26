@@ -181,6 +181,17 @@ define Device/ctera_c200-v1
 endef
 TARGET_DEVICES += ctera_c200-v1
 
+define Device/dlink_dns320
+  DEVICE_VENDOR := D-Link
+  DEVICE_MODEL := DNS-320
+  DEVICE_VARIANT := V1
+  SUPPORTED_DEVICES += dlink,dns-320-a1
+  DEVICE_PACKAGES := kmod-ata-marvell-sata kmod-thermal kmod-hwmon-drivetemp \
+	kmod-hwmon-gpiofan kmod-gpio-button-hotplug kmod-usb-ledtrig-usbport \
+	kmod-usb-storage kmod-fs-ext4 kmod-rtc-mv mtd-rw dns320-fand block-mount
+endef
+TARGET_DEVICES += dlink_dns320
+
 define Device/dlink_dns320l
   DEVICE_VENDOR := D-Link
   DEVICE_MODEL := DNS-320L
